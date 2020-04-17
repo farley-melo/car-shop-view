@@ -15,8 +15,6 @@ import {ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     FabricanteRoutingModule,HttpClientModule,ReactiveFormsModule
   ],
-  providers:[
-    FabricanteService
-  ]
+
 })
 export class FabricanteModule { }

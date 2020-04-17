@@ -7,7 +7,8 @@ import {Fabricante} from './fabricante';
   providedIn: 'root'
 })
 export class FabricanteService {
-  public emissor=new EventEmitter<boolean>();
+  public emissorInput=new EventEmitter<any>();
+  public emissorUpdate=new EventEmitter<any>();
   constructor(private http:HttpClient) { }
 
   public cadastraFabricante(fabricante:Fabricante):Observable<Fabricante>{

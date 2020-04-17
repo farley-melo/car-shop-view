@@ -9,9 +9,9 @@
     </thead>
     <tbody>
     <tr class="row" *ngFor="let fabricante of listaDeFabricantes" #linha>
-      <td class="col-1">{{fabricante.codigo}}</td>
       <td class="col-2">{{fabricante.nome}}</td>
       <td class="col-1"><span class="glyphicon glyphicon-remove iconeVermelho" (click)="excluirFabricante(linha,fabricante.codigo)"></span></td>
+      <td class="col-1"><span class="glyphicon glyphicon-pencil"(click)="editarFabricate(fabricante,linha)"></span></td>
 
     </tr>
 

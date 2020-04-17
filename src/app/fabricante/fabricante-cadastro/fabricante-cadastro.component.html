@@ -1,7 +1,7 @@
 <div>
   <!-- Imagem e texto -->
   <nav class="navbar navbar-light bg-light h3">
-    Cadastro de carros
+    Cadastro de fabricantes
   </nav>
 </div>
 <div class="container-fluid">
@@ -9,7 +9,8 @@
     <div class="form-group row">
       <label for="inputPassword" class="col-sm-2 col-form-label">Nome do fabricante:</label>
       <div class="col-sm-6" >
-        <input type="text" class="form-control" formControlName="nome" [ngClass]="verificarErros()">
+        <input type="text" class="form-control " formControlName="nome" [ngClass]="verificarErros()">
+        <input type="text" class="form-control col-2 mt-2" formControlName="codigo" [readOnly]="true">
         <div  *ngIf="formularioDeCadastro.get('nome').invalid&&formularioDeCadastro.get('nome').touched">
           <span class="alert-danger">É necessario preencher o nome do fabricante</span>
         </div>

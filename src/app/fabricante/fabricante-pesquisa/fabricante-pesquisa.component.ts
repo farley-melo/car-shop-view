@@ -12,17 +12,16 @@ import {map, switchMap} from 'rxjs/operators';
 export class FabricantePesquisaComponent implements OnInit,OnDestroy{
   listaDeFabricantes:Fabricante[]=[];
   inscricao:Subscription;
+  inscricaoEmissor:Subscription;
 
   constructor(private fabricanteService:FabricanteService) { }
 
 
 
    ngOnInit(): void {
-     this.fabricanteService.listarFabricantes().subscribe(res=>{this.listaDeFabricantes=res.sort((a,b)=>a.codigo-b.codigo)});
-     this.fabricanteService.emissor.subscribe(result=>{
-       this.fabricanteService.cadastraFabricante(result).subscribe(
-         result=>{this.listaDeFabricantes.push(result)}
-       );
+    this.inscricao= this.fabricanteService.listarFabricantes().subscribe(res=>{this.listaDeFabricantes=res.sort((a,b)=>a.codigo-b.codigo)});
+     this.inscricaoEmissor=this.fabricanteService.emissorInput.subscribe(result=>{
+       this.listaDeFabricantes.push(result);
      })
   }
 
@@ -38,8 +37,14 @@ export class FabricantePesquisaComponent implements OnInit,OnDestroy{
   ngOnDestroy(): void {
     if(this.inscricao){
       this.inscricao.unsubscribe();
+      this.inscricaoEmissor.unsubscribe();
     }
 
+  }
+
+  editarFabricate(fabricante: Fabricante, linha: HTMLTableRowElement) {
+      this.fabricanteService.emissorUpdate.emit(fabricante);
+      linha.remove();
   }
 }
 
